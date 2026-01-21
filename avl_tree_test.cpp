@@ -400,7 +400,7 @@ template <typename Key, typename Info>
 std::vector<std::pair<Key, Info>> maxinfo_selector(const Avl_tree<Key, Info>& tree, unsigned cnt){
     std::vector<std::pair<Key, Info>> ans;
     Avl_tree<Key, Info> T = tree; 
-    for(int i=0; i<cnt; i++){
+    for(unsigned i=0; i<cnt; i++){
         if(T.empty()) break;
 
         if(T.maxElement()){
