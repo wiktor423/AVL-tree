@@ -209,16 +209,19 @@ typename Avl_tree<Key,Info>::node* Avl_tree<Key,Info>::RemovePrivate(node*& root
         if(!(rootPtr->left || rootPtr->right)){
             delete rootPtr;
             rootPtr = nullptr;
+            size--;
         } 
         else if (!rootPtr->left){
             node* temp = rootPtr;
             rootPtr = rootPtr->right;
             delete temp;
+            size--;
         } 
         else if (!rootPtr->right){
             node* temp = rootPtr;
             rootPtr = rootPtr->left;
             delete temp;
+            size--;
         } 
         else{
             node* temp = FindSuccesor(rootPtr->right);
@@ -387,7 +390,7 @@ const Info& Avl_tree<Key,Info>::ReturnValue(const node* rootPtr, const Key& k) c
 
     if(rootPtr->key == k) return rootPtr->info;
     if(rootPtr->key > k) return ReturnValue(rootPtr->left,k); 
-    if(rootPtr->key < k) return ReturnValue(rootPtr->right,k); 
+    else return ReturnValue(rootPtr->right,k); 
 }
 
 
